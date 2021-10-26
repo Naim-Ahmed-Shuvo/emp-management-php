@@ -1,0 +1,249 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Fira Sans', sans-serif;
+    background: #FEFEFE;
+}
+
+.container{
+    width: 700px;
+    margin: 168px auto;
+    display: flex;
+    align-items: center;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.left-side{
+    flex: .5;
+}
+.signup,.signin{
+    font-size: 30px;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 400;
+    color: #333333;
+    text-align: center;
+    padding-bottom: 30px;
+    position: relative;
+}
+.signup::after{
+    content: '';
+    height: 1px;
+    width: 61px;
+    background: #6C63FF;
+    position: absolute;
+    bottom: 33%;
+    left: 36%;
+}
+.signin{
+    margin-top: 30px;
+}
+.signin::after{
+    content: '';
+    height: 1px;
+    width: 61px;
+    background: #6C63FF;
+    position: absolute;
+    bottom: 33%;
+    left: 36%;
+}
+img{
+    width: 100%;
+}
+.right-side{
+    flex: 0.5;
+    padding: 20px 20px; 
+}
+
+.inputs label{
+  display: block;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: #333333;
+  margin: 5px 0px;
+}
+.inputs input,select{
+    padding: 7px 5px;
+    width: 100%;
+    border-radius: 10px;
+    outline: 0;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.inputs{
+    padding: 10px 0px;
+}
+.inputs input:focus{
+    border: 1px solid #6C63FF;
+}
+.inputs button,.btn{
+    padding: 5px 10px;
+    border: 1px solid #6C63FF; 
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333333;
+    font-size: 13px;
+    transition: all .5s ease-in-out;
+    margin-left: 10px;
+    background: #FFFFFF;
+}
+.inputs button:hover,.btn{
+    background: #6C63FF;
+    color: #ffffff;
+    cursor: pointer;
+}
+.input_buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.info span{
+    color: #6F4FC0;
+    font-size: 13px;
+    display: block;
+}
+
+.error{
+    color: red;
+    font-size: 14px;
+}
+
+
+/* --------------------==================================----------------- */
+/* dasboard design */
+.wrapper{
+    width: 1040px;
+    height: 80vh;
+    margin: 50px auto;
+    background: #EDEAF3;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.dashboard{
+    padding: 20px;
+    display: flex;
+    height: 100%;
+}
+.darshboard__left__menu{
+   flex: 0.2;
+   background: #6F4FC0;
+   height: 100%;
+   border-radius: 10px;
+   padding: 10px 10px;
+}
+.logo{
+    color: #FFFFFF;
+    font-family: 'Fira Sans', sans-serif;
+    margin: 10px 0px;
+    font-size: 20px;
+    text-align: center;
+}
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+ul li a{
+    color: #FFFFFF;
+    font-family: 'Fira Sans', sans-serif;
+    font-style: normal;
+    font-size: 15px;
+    margin: 10px 5px;
+    display: block;
+    text-align: left;
+}
+
+.dashboar__right__main{
+    padding: 30px;
+    flex: 0.8;
+}
+.title h4{
+    color: #333333;
+    font-family: 'Fira Sans', sans-serif;
+    font-style: normal;
+    font-size: 20px;
+}
+.cads{
+    display: flex;
+    
+}
+.card{
+    width: 200px;
+    background: rgb(255, 255, 255);
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.card__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.card__header h5{
+    color: #333333;
+    font-size: 14px;
+    font-family: 'Fira Sans', sans-serif;
+}
+.amount{
+    color: #333333;
+    font-size: 14px;
+    font-family: 'Fira Sans', sans-serif;
+    margin: 10px 3px;  
+}
+.card__header i{
+    color: #333333;
+    opacity: 0.5;
+}
+.card a{
+    text-decoration: none;
+    color: #333333;
+    font-size: 14px;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.dashboard__main__section{
+    padding: 20px;
+    background: #f5f5f5;
+}
+.dashboard__main__section table{
+    width: 100%;
+    text-align: center;
+}
+.dashboard__main__section table tr th{
+    padding-bottom: 20px;
+    color: #333333;
+    font-size: 15px;
+    
+}
+.dashboard__main__section table tr td{
+    padding-bottom: 20px;
+    color: #333333;
+    font-size: 15px;
+}
+.dashboard__main__section table tr td a{
+    display: block;
+    padding: 5px 0px;
+}
+
+
+/* dasboard design./ */
+
+/* projects */
+.add_project_form{
+    width: 100%;
+    
+}
+.add_project_form .inputs{
+    /* display: flex;
+    justify-content: space-between; */
+    /* padding: 20px; */
+}
+.add_project_form .inputs input{
+    margin-bottom: 10px;
+}
+/* .add_project_form */
