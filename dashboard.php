@@ -55,7 +55,7 @@ $total_projects = $db->findTotal('SELECT * FROM projects;');
                       
                   </div>
 
-                  <div class="dashboard__main__section">
+                  <!-- <div class="dashboard__main__section">
                       <table>
                           <thead>
                               <tr>
@@ -76,7 +76,7 @@ $total_projects = $db->findTotal('SELECT * FROM projects;');
                               </tr>
                           </tbody>
                       </table>
-                  </div>
+                  </div> -->
                </div>
            </div>
        </div>  
