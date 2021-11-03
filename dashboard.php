@@ -1,25 +1,25 @@
 <?php include 'header.php';?>
 
+<?php 
+
+include 'db/config.php';
+include 'db/Database.php';
+
+$db = new Database();
+
+$total_emp_query = 'SELECT * FROM employess;';
+$total_emp = $db->findTotal($total_emp_query);
+$total_users = $db->findTotal('SELECT * FROM users;');
+$total_projects = $db->findTotal('SELECT * FROM projects;');
+
+
+?>
    <div class="wrapper">
        <div class="dashboard">
            <div class="darshboard__left__menu">
-               <div class="logo">
-                   <h4>Employee Management System</h4>
-               </div>
-               <hr style="border-top: 1px solid #fafafafa;opacity: 0.3">
-
-               <ul>
-                   <li><a href="dashboard.php"><span>Dashboard</span></a></li>
-                   <li><a href=""><span>Employee</span></a></li>
-                   <li><a href=""><span>Salary</span></a></li>
-                   <li><a href="projects.php"><span>Projects</span></a></li>
-               </ul>
-
-               <hr style="border-top: 1px solid #fafafafa;opacity: 0.3">
-
-               <ul>
-                   <li><a href="index.php"><span>Logout</span></a></li>
-               </ul>
+               <?php
+                 include './inc/dash_left_menu.php';
+               ?>
            </div>
            <div class="dashboar__right__main">
                <div class="content">
@@ -33,24 +33,24 @@
                             <h5>Total Users</h5>
                             <i class="fas fa-users"></i>
                           </div>
-                          <h5 class="amount">30</h5>
-                          <a href="#">View all</a>
+                          <h5 class="amount"><?php echo $total_users->num_rows??''?></h5>
+                          <a href="users.php">View all</a>
                       </div>
                       <div class="card">
                           <div class="card__header">
                             <h5>Total Employees</h5>
                             <i class="fas fa-user-tie"></i>
                           </div>
-                          <h5 class="amount">50</h5>
-                          <a href="#">View all</a>
+                          <h5 class="amount"><?php echo $total_emp->num_rows??''; ?></h5>
+                          <a href="employee.php">View all</a>
                       </div>
                       <div class="card">
                           <div class="card__header">
-                            <h5>Total Salary</h5>
+                            <h5>Total Projects</h5>
                             <i class="fas fa-dollar-sign"></i>
                           </div>
-                          <h5 class="amount">20</h5>
-                          <a href="#">View all</a>
+                          <h5 class="amount"><?php echo $total_projects->num_rows??''?></h5>
+                          <a href="projects.php">View all</a>
                       </div>
                       
                   </div>

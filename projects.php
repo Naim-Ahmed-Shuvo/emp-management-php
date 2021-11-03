@@ -22,27 +22,23 @@ $projects = $db->fecthAllProjects($fetcAllProjectsQuery);
 // $emp = $db->fetchEmployeSingle('SELECT * FROM `employess` WHERE id= ".$emp_id."');
 // echo $emp_id;
 
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    echo $id;
+    $query = "DELETE FROM `projects`  WHERE `id`=$id";
+    $result = $db->deleteProject($query);
+    if($result=='Success'){
+        header("Location:projects.php");
+    } else{
+        echo "Error";
+    }
+}
+
 ?>
    <div class="wrapper">
        <div class="dashboard">
            <div class="darshboard__left__menu">
-               <div class="logo">
-                   <h4>Employee Management System</h4>
-               </div>
-               <hr style="border-top: 1px solid #fafafafa;opacity: 0.3">
-
-               <ul>
-                   <li><a href="dashboard.php"><span>Dashboard</span></a></li>
-                   <li><a href=""><span>Employee</span></a></li>
-                   <li><a href=""><span>Salary</span></a></li>
-                   <li><a href="projects.php"><span style="font-weight: 700;">Projects</span></a></li>
-               </ul>
-
-               <hr style="border-top: 1px solid #fafafafa;opacity: 0.3">
-
-               <ul>
-                   <li><a href="index.php"><span>Logout</span></a></li>
-               </ul>
+               <?php include 'inc/dash_left_menu.php'?>
            </div>
            <div class="dashboar__right__main">
                <div class="content">
@@ -53,7 +49,7 @@ $projects = $db->fecthAllProjects($fetcAllProjectsQuery);
                  
 
                   <div class="dashboard__main__section" style="margin-top: 40px;">
-                  <a href="add-project.php" style="text-align: right; display:block;margin-bottom: 30px">add project</a>
+                     <a href="add-project.php" style="text-align: right; display:block;margin-bottom: 30px">add project</a>
                       <table>
                           <thead>
                               <tr>
@@ -68,7 +64,7 @@ $projects = $db->fecthAllProjects($fetcAllProjectsQuery);
                               
                           </thead>
                           <tbody>
-                              <?php if($projects->num_rows>0){?>
+                              <?php if(isset($projects->num_rows)){?>
                                 <?php while($project = $projects->fetch_assoc()){?>
                                     <tr>
                                         <td><?php echo $project['id']?></td>
@@ -78,12 +74,14 @@ $projects = $db->fecthAllProjects($fetcAllProjectsQuery);
                                         <td><?php echo $project['end_date']?></td>
                                         <td>
                                             <a href="edit-project.php?project_id=<?php echo urldecode($project['id'])?>">edit</a>
-                                            <a href="#">delete</a>
-                                            <a href="#">assign</a>
+                                            <a href="projects.php?id=<?php echo urldecode($project['id'])?>">delete</a>
                                         </td>
                                     </tr>
                                 <?php }?>
-                              <?php }?>
+                              <?php } else{?>
+                                <h5>No data</h5>
+                                
+                                <?php }?>
                           </tbody>
                       </table>
                   </div>

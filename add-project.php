@@ -13,13 +13,16 @@ $employees  = $db->getAllEmployess($fetcAllEmpQuery);
 //submit form
 
 if(isset($_POST['submit'])){
-    $project_name = $_POST['project_name'];
-    $start_date = $_POST['start_date'];
-    $end_date = $_POST['end_date'];
-    $empolyee_id = $_POST['empolyee_id'];
+   echo $project_name = $_POST['project_name'];
+   echo '<br>';
+   echo $start_date = $_POST['start_date'];
+   echo '<br>';
+   echo $end_date = $_POST['end_date'];
+   echo '<br>';
+   echo $empolyee_id = $_POST['empolyee_id'];
 
-    // echo $empolyee_id ,$project_name;
-    $query =  "INSERT INTO `projects`( `emp_id`, `project_name`, `start_data`, `end_date`) VALUES ('$empolyee_id','$project_name]','$start_date','$end_date')";
+    echo $empolyee_id ,$project_name;
+    $query =  "INSERT INTO `projects`( `id`,`emp_id`, `project_name`, `start_data`, `end_date`) VALUES (NULL,'$empolyee_id','$project_name','$start_date','$end_date')";
  
     $result = $db->addProject($query);
     
@@ -28,7 +31,7 @@ if(isset($_POST['submit'])){
          echo $result;
          header('Location:projects.php');
      } else{
-         $error = 'Invalid name or password';
+         $error = 'Error';
      }
  //    echo $email.' '.$password;
  }
@@ -37,23 +40,7 @@ if(isset($_POST['submit'])){
    <div class="wrapper">
        <div class="dashboard">
            <div class="darshboard__left__menu">
-               <div class="logo">
-                   <h4>Employee Management System</h4>
-               </div>
-               <hr style="border-top: 1px solid #fafafafa;opacity: 0.3">
-
-               <ul>
-                   <li><a href="dashboard.php"><span>Dashboard</span></a></li>
-                   <li><a href=""><span>Employee</span></a></li>
-                   <li><a href=""><span>Salary</span></a></li>
-                   <li><a href="projects.php"><span style="font-weight: 700;">Projects</span></a></li>
-               </ul>
-
-               <hr style="border-top: 1px solid #fafafafa;opacity: 0.3">
-
-               <ul>
-                   <li><a href="index.php"><span>Logout</span></a></li>
-               </ul>
+              <?php include 'inc/dash_left_menu.php';?>
            </div>
            <div class="dashboar__right__main">
                <div class="content">

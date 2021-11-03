@@ -98,20 +98,109 @@ class Database{
      }
   }
 
+  //updateproject
+  function updateProject($query){
+    $reslut = $this->link->query($query) or die($this->link->error.__LINE__);
+
+    //  echo "num rows: ".$reslut->num_rows;
+     // echo $reslut;
+     if($reslut){
+         return "Success";
+     } else{
+         return false;
+     }
+  }
+
+  //delete project
+  function deleteProject($query){
+    $reslut = $this->link->query($query) or die($this->link->error.__LINE__);
+
+    //  echo "num rows: ".$reslut->num_rows;
+     // echo $reslut;
+     if($reslut){
+         return "Success";
+     } else{
+         return false;
+     }
+  }
+
   //fetchEmployeSingle
   public function fetchEmployeSingle($query)
   {
-     // echo "login";
+     
      $reslut = $this->link->query($query) or die($this->link->error.__LINE__);
-     $name = $reslut->fetch_assoc();
-    //  echo json_encode($reslut);
-     echo $name['name'];
+     return $reslut;
+  }
+
+  //addEmployee
+  function addEmployee($query){
+    $reslut = $this->link->query($query) or die($this->link->error.__LINE__);
+
+    //  echo "num rows: ".$reslut->num_rows;
      // echo $reslut;
-    //  if($reslut->num_rows>0){
-    //      return $reslut;
-    //  } else{
-    //      return false;
-    //  }
+     if($reslut){
+         return "Success";
+     } else{
+         return false;
+     }
+  }
+
+  //update emp
+  function updateEmp($query){
+    $result = $this->link->query($query) or die($this->link->error.__LINE__);
+    if($result){
+        return "Success";
+    } else{
+        return false;
+    }
+  }
+
+  //delete emp
+  function deleteEmp($query){
+    $result = $this->link->query($query) or die($this->link->error.__LINE__);
+    if($result){
+        return "Success";
+    } else{
+        return false;
+    }
+  }
+
+  //paySalary
+  function paySalary($query){
+    $result = $this->link->query($query) or die($this->link->error.__LINE__);
+    if($result){
+        return "Success";
+    } else{
+        return false;
+    }
+  }
+
+  function findTotal($query){
+    $result = $this->link->query($query) or die($this->link->error.__LINE__);
+    if($result){
+        return $result;
+    } else{
+        return false;
+    }
+  }
+
+
+  function deleteUser($query){
+    $result = $this->link->query($query) or die($this->link->error.__LINE__);
+    if($result){
+        return "Success";
+    } else{
+        return false;
+    }
+  }
+
+  function getAllUsers($query){
+    $result = $this->link->query($query) or die($this->link->error.__LINE__);
+    if($result){
+        return $result;
+    } else{
+        return false;
+    }
   }
 }
 

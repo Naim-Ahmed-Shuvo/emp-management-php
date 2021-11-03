@@ -12,11 +12,11 @@ if(isset($_POST['submit'])){
    $result = $db->sign_in($query);
 
 
-//    if($result){
-//        header('Location:dashboard.php');
-//    } else{
-//        $error = 'Invalid name or password';
-//    }
+   if($result){
+       header('Location:dashboard.php');
+   } else{
+       $error = 'Invalid name or password';
+   }
 //    echo $email.' '.$password;
 }
 ?>
@@ -34,7 +34,7 @@ if(isset($_POST['submit'])){
               echo $error? "<p style='color:".$red.";'>".$error."</p>":'';
             ?>
             <div class="form-div">
-                <form action="" method="post">
+                <form action="index.php" method="post">
                     <div class="inputs">
                         <label for="email">Email</label>
                         <input type="email" name="email" placeholder="Email...">

@@ -12,23 +12,23 @@ $project = $db->fetchSingleProject($fetchSingleProjectsQuery)->fetch_assoc();
 // echo $project['employ_name'];
 
 if(isset($_POST['submit'])){
-    $project_name = $_POST['project_name'];
-    $start_date = $_POST['start_date'];
-    $end_date = $_POST['end_date'];
+    echo $project_name = $_POST['project_name'];
+    echo $start_date = $_POST['start_date'];
+    echo $end_date = $_POST['end_date'];
     echo $empolyee_id = $_POST['empolyee_id'];
 
     // echo $empolyee_id ,$project_name;
-    // $query =  "INSERT INTO `projects`( `emp_id`, `project_name`, `start_data`, `end_date`) VALUES ('$empolyee_id','$project_name]','$start_date','$end_date')";
+    $query =  "UPDATE `projects` SET `emp_id`='$empolyee_id',`project_name`='$project_name',`start_data`='$start_date',`end_date`='$end_date' WHERE `id`=$project_id";
  
-    // $result = $db->addProject($query);
+    $result = $db->updateProject($query);
     
  
-    // if($result=='Success'){
-    //      echo $result;
-    //      header('Location:projects.php');
-    //  } else{
-    //      $error = 'Invalid name or password';
-    //  }
+    if($result=='Success'){
+         echo $result;
+         header('Location:projects.php');
+     } else{
+         $error = 'Invalid name or password';
+     }
  //    echo $email.' '.$password;
  }
 
@@ -38,23 +38,7 @@ if(isset($_POST['submit'])){
 <div class="wrapper">
        <div class="dashboard">
            <div class="darshboard__left__menu">
-               <div class="logo">
-                   <h4>Employee Management System</h4>
-               </div>
-               <hr style="border-top: 1px solid #fafafafa;opacity: 0.3">
-
-               <ul>
-                   <li><a href="dashboard.php"><span>Dashboard</span></a></li>
-                   <li><a href=""><span>Employee</span></a></li>
-                   <li><a href=""><span>Salary</span></a></li>
-                   <li><a href="projects.php"><span style="font-weight: 700;">Projects</span></a></li>
-               </ul>
-
-               <hr style="border-top: 1px solid #fafafafa;opacity: 0.3">
-
-               <ul>
-                   <li><a href="index.php"><span>Logout</span></a></li>
-               </ul>
+               <?php include 'inc/dash_left_menu.php';?>
            </div>
            <div class="dashboar__right__main">
                <div class="content">
@@ -72,20 +56,20 @@ if(isset($_POST['submit'])){
                               <label for="project_name">Project Name</label>
                             <input type="text" name="project_name" value="<?php echo $project['project_name']?>"  placeholder="project_name.." >
                             <label for="start_date">Start date</label>
-                            <input type="date" name="start_date" value="<?php echo $project['start_data']?>"  placeholder="start_date.." >
+                            <input type="date" name="start_date" value="<?php echo $project['start_data']?>" >
                           </div>
                           <div class="inputs">
                           <label for="end_date">End Date</label>
-                            <input type="date" name="end_date" value="<?php echo $project['end_date']?>" placeholder="end_date.." >
+                            <input type="date" name="end_date" value="<?php echo $project['end_date']?>" >
 
 
                             <label for="empolyee_id">Assign Employee</label>
                             <select name="empolyee_id"  value="<?php echo $project['emp_id']?>">
-                                <option selected>--select</option>
+                                <option >--select</option>
                                <?php
                                  if($employees->num_rows>0){?>
                                     <?php while($em = $employees->fetch_assoc()){?>
-                                      <option value="<?php echo $em['name'];?>" ><?php echo $em['name'];?></option>
+                                      <option value="<?php echo $em['id'];?>" <?php echo $em['name']==$project['employ_name']?'selected':"";?> ><?php echo $em['name'];?></option>
                                     <?php }?>
                                 <?php }?>
                                 
