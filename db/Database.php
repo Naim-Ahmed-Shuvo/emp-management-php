@@ -169,6 +169,16 @@ class Database{
   function paySalary($query){
     $result = $this->link->query($query) or die($this->link->error.__LINE__);
     if($result){
+        return  $result;
+    } else{
+        return false;
+    }
+  }
+
+  //update salary table
+  function addSalary($query){
+    $result = $this->link->query($query) or die($this->link->error.__LINE__);
+    if($result){
         return "Success";
     } else{
         return false;
@@ -195,6 +205,15 @@ class Database{
   }
 
   function getAllUsers($query){
+    $result = $this->link->query($query) or die($this->link->error.__LINE__);
+    if($result){
+        return $result;
+    } else{
+        return false;
+    }
+  }
+
+  function getEmployeForProject($query){
     $result = $this->link->query($query) or die($this->link->error.__LINE__);
     if($result){
         return $result;

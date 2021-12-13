@@ -6,16 +6,20 @@ $db = new Database();
 $fetcAllEmpQuery = "SELECT  *  FROM  `employess`;";
 $employees  = $db->getAllEmployess($fetcAllEmpQuery);
 $project_id = $_GET['project_id'];
-$fetchSingleProjectsQuery = "SELECT projects.*, employess.name AS employ_name FROM projects INNER JOIN employess ON employess.id = projects.emp_id WHERE projects.id=$project_id; ";
+// $fetchSingleProjectsQuery = "SELECT projects.*, employess.name AS employ_name FROM projects INNER JOIN employess ON employess.id = projects.emp_id WHERE projects.id=$project_id; ";
+$fetchSingleProjectsQuery = "SELECT * FROM `projects` WHERE id=$project_id";
+
 $project = $db->fetchSingleProject($fetchSingleProjectsQuery)->fetch_assoc();
 // echo $project['project_name'];
 // echo $project['employ_name'];
 
 if(isset($_POST['submit'])){
-    echo $project_name = $_POST['project_name'];
-    echo $start_date = $_POST['start_date'];
-    echo $end_date = $_POST['end_date'];
-    echo $empolyee_id = $_POST['empolyee_id'];
+    $project_name = $_POST['project_name'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $empolyee_id = implode(',',$_POST['empolyee_id']);
+
+    // echo $empolyee_id;
 
     // echo $empolyee_id ,$project_name;
     $query =  "UPDATE `projects` SET `emp_id`='$empolyee_id',`project_name`='$project_name',`start_data`='$start_date',`end_date`='$end_date' WHERE `id`=$project_id";
@@ -64,12 +68,12 @@ if(isset($_POST['submit'])){
 
 
                             <label for="empolyee_id">Assign Employee</label>
-                            <select name="empolyee_id"  value="<?php echo $project['emp_id']?>">
+                            <select name="empolyee_id[]" multiple  value="<?php echo $project['emp_id']?>">
                                 <option >--select</option>
-                               <?php
+                                <?php
                                  if($employees->num_rows>0){?>
                                     <?php while($em = $employees->fetch_assoc()){?>
-                                      <option value="<?php echo $em['id'];?>" <?php echo $em['name']==$project['employ_name']?'selected':"";?> ><?php echo $em['name'];?></option>
+                                      <option value="<?php echo $em['id'];?>" ><?php echo $em['name'];?></option>
                                     <?php }?>
                                 <?php }?>
                                 

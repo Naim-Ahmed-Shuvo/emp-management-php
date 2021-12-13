@@ -12,16 +12,16 @@ $employees  = $db->getAllEmployess($fetcAllEmpQuery);
 
 //submit form
 
-if(isset($_POST['submit'])){
-   echo $project_name = $_POST['project_name'];
-   echo '<br>';
-   echo $start_date = $_POST['start_date'];
-   echo '<br>';
-   echo $end_date = $_POST['end_date'];
-   echo '<br>';
-   echo $empolyee_id = $_POST['empolyee_id'];
+if(isset($_POST['submit']) && !empty($_POST['emp'])){
 
-    echo $empolyee_id ,$project_name;
+
+    $project_name = $_POST['project_name'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+
+    $empolyee_id = implode(",",$_POST['emp']);
+    // echo $empolyee_id;
+
     $query =  "INSERT INTO `projects`( `id`,`emp_id`, `project_name`, `start_data`, `end_date`) VALUES (NULL,'$empolyee_id','$project_name','$start_date','$end_date')";
  
     $result = $db->addProject($query);
@@ -33,7 +33,8 @@ if(isset($_POST['submit'])){
      } else{
          $error = 'Error';
      }
- //    echo $email.' '.$password;
+   
+ 
  }
 
 ?>
@@ -65,8 +66,8 @@ if(isset($_POST['submit'])){
                             <input type="date" name="end_date" placeholder="end_date.." required>
 
 
-                            <label for="empolyee_id">Assign Employee</label>
-                            <select name="empolyee_id" >
+                            <label for="emp">Assign Employee</label>
+                            <select name="emp[]" multiple >
                                 <option selected>--select</option>
                                <?php
                                  if($employees->num_rows>0){?>

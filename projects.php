@@ -6,25 +6,13 @@ include 'db/config.php';
 include 'db/Database.php';
 
 $db = new Database();
-$fetcAllProjectsQuery = 'SELECT projects.*, employess.name AS employ_name FROM projects INNER JOIN employess ON employess.id = projects.emp_id; ';
+$fetcAllProjectsQuery = 'SELECT * FROM `projects`';
 $projects = $db->fecthAllProjects($fetcAllProjectsQuery);
-// echo $projects;
-// if($projects->num_rows>0){
-//     $project = $projects->fetch_assoc();
-//     $emp_id = $project['emp_id'];
-//     echo "em_id  ",$emp_id;
-// } else{
-//     echo 'no projects';SELECT projects.*, employess.name AS employ_name FROM projects INNER JOIN employess ON employess.id = projects.emp_id; 
-// }
 
-// $project = $projects->fetch_assoc();
-// $emp_id = $project['emp_id'];
-// $emp = $db->fetchEmployeSingle('SELECT * FROM `employess` WHERE id= ".$emp_id."');
-// echo $emp_id;
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    echo $id;
+    // echo $id;
     $query = "DELETE FROM `projects`  WHERE `id`=$id";
     $result = $db->deleteProject($query);
     if($result=='Success'){
@@ -32,6 +20,25 @@ if(isset($_GET['id'])){
     } else{
         echo "Error";
     }
+}
+
+function getEployeesById($emp_id){
+    $db = new Database();
+    $ids = explode(',',$emp_id);
+  for($i=0;$i<count($ids);$i++){
+      $q = "SELECT  `name` FROM `employess` WHERE id=$ids[$i]";
+      $emp_name = $db->getEmployeForProject($q)->fetch_assoc();
+      if(!empty($emp_name )){
+
+          foreach ($emp_name  as $key => $value) {
+              echo $value."<br>";
+          }
+      } else{
+          echo "no employee assigned";
+      }
+    //   print_r($emp_name['name'])  ;
+    //   echo $ids[$i];
+  }
 }
 
 ?>
@@ -69,7 +76,7 @@ if(isset($_GET['id'])){
                                     <tr>
                                         <td><?php echo $project['id']?></td>
                                         <td><?php echo $project['project_name']?></td>
-                                        <td><?php echo $project['employ_name']?></td>
+                                        <td><?php echo getEployeesById($project['emp_id'])?></td>
                                         <td><?php echo $project['start_data']?></td>
                                         <td><?php echo $project['end_date']?></td>
                                         <td>

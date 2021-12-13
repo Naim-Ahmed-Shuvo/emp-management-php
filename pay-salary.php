@@ -14,10 +14,18 @@ $emp = $db->fetchEmployeSingle($query)->fetch_assoc();
 
 if(isset($_POST["submit"])){
     $query = "update employess set paid='true' where id=$emp_id";
-    $result = $db->paySalary($query);
+    $payResult = $db->paySalary($query);
+
+    //updating salary table
+    $salary = $emp['salary'];
+    $paid = "true";
+    $salaryQuery = "INSERT INTO `salaries`( `emp_id`, `salary`, `paid`) VALUES ('$emp_id','$salary','$paid')";
+    $salaryResult = $db->addSalary($salaryQuery);
     
     //
-    if($result=='Success'){
+    if($payResult && $salaryResult){
+        echo $payResult;
+        echo $salaryResult;
         header('Location:employee.php');
     } else{
         echo "Error";
